@@ -1,0 +1,34 @@
+<div class="blogNewComment">
+	<h2>Post a Comment</h2>
+	<% if !current_user && (!BlogKit.instance.settings['anonymous_comments'] || BlogKit.instance.settings['anonymous_comments'] == false) %>
+		<p>You must be logged in to post a comment.</p>
+	<% else %>
+		<% if current_user %>
+			<p>Posting as <span class="blogPoster"><%= current_user.name %></span></p>
+		<% end %>
+		<% form_for([@blog_post, blog_comment]) do |f| %>
+			<%= f.error_messages %>
+			<% unless current_user %>
+				<p>
+					<%= f.label :name %><br />
+					<%= f.text_field :name %>
+				</p>
+				<p>
+					<%= f.label :site_url, 'Web Site' %><br />
+					<%= f.text_field :site_url %>
+				</p>
+				<p>
+					<%= f.label :email, 'Email (optional)' %><br />
+					<%= f.text_field :email %>
+				</p>
+			<% end %>
+			<p>
+				<%= f.label :body %><br />
+				<%= f.text_area :body, :class => 'blogNewCommentField' %>
+			</p>
+			<p>
+				<%= f.submit 'Post' %>
+			</p>
+		<% end %>
+	<% end %>
+</div>

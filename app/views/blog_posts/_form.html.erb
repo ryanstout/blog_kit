@@ -1,0 +1,50 @@
+<% if BlogKit.instance.settings['use_markdown'] == false && BlogKit.instance.settings['html_editor'] == true %>
+	<script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script>
+	<script type="text/javascript">
+	bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
+	</script>
+<% end %>
+
+<div class="editBlogPost">
+	<% if BlogKit.instance.settings['use_markdown'] != false %>
+		<div class="blogMarkdownHelp">
+			<h2>Editing Help</h2>
+			<p>This blog uses Markdown to format its syntax, here is a quick guide</p>
+			<ul>
+				<li>**bold text**</li>
+				<li>*italicized text*</li>
+				<li>&gt;This text is blockquoted</li>
+				<li>&gt;&gt;This text is a nested blockquote</li>
+				<li>* This is an unordered list (ul) item</li>
+				<li>1. This is an ordered list (ol) item</li>
+				<li>[This is a link](http://www.example.com/)</li>
+				<li>[This is a link](http://www.example.com/ "with a title attribute")</li>
+				<li>
+					Code can be highlighted with the following wrapper<br />
+
+<pre>&lt;code lang=&quot;ruby&quot;&gt;
+	... your code ...
+&lt;/code&gt;</pre>
+				</li>
+			</ul>
+		</div>
+	<% end %>
+	<% form_for(@blog_post) do |f| %>
+		<%= f.error_messages %>
+		<p>
+			<%= f.label :title %><br />
+			<%= f.text_field :title %>
+		</p>
+		<p>
+			<%= f.label :body %><br />
+			<%= f.text_area :body %>
+		</p>
+		<p>
+			<%= f.label :published, 'Status' %><br />
+			<%= f.radio_button :published, false %><%= f.label :published_false, 'Draft' %>
+			<%= f.radio_button :published, true %><%= f.label :published_true, 'Publish' %>
+		<p>
+			<%= f.submit 'Save' %> or <%= link_to 'Back', blog_posts_path %>
+		</p>
+	<% end %>
+</div>

@@ -1,0 +1,46 @@
+<div class="blogPost">
+	<div class="blogUserImage">
+		<%= blog_post.user_image_tag %>
+	</div>
+
+	<h1 class="blogPostTitle">
+		<%= link_to(h(blog_post.title), blog_post) %>
+		<% if !blog_post.published? %>
+			[Draft]
+		<% end %>
+	</h1>
+
+	<p class="blogPostPostedAt">
+		Posted
+		<% if blog_post.show_user? %>
+			By <span class="blogPoster"><%= blog_post.user_name %></span>
+		<% end %>
+		on 
+		<span class="blogPostDate"><%= blog_post.formatted_updated_at %></span>
+	
+		<% if current_user && current_user.admin? %>
+			<br />
+			<%= link_to('Edit Post', edit_blog_post_path(blog_post))%>
+			<%= link_to('Delete', blog_post_path(blog_post), :method => :delete, :confirm => "Are you sure you want to destroy the post: #{blog_post.title}") %>
+		<% end %>
+	</p>
+
+	<div class="blogPostBody">
+		<%= blog_post.parsed_body %>
+	</div>
+
+	
+	<p class="blogFooter">
+		<%= link_to(pluralize(blog_post.blog_comments.count, 'comment'), blog_post_path(blog_post), :class => 'blogCommentCount') %>
+		<% if params[:action] == 'show' %>
+			<%= link_to('Back', blog_posts_path) %>		
+		<% end %>
+	</p>
+	
+	<% if defined?(show_comments) %>
+		<%= render :partial => 'blog_comments/new_blog_comment', :locals => {:blog_comment => @blog_comment} %>
+		<%= render :partial => 'blog_posts/comments' %>
+	<% end %>
+	
+	<br style="clear: both;" />
+</div>

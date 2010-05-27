@@ -1,0 +1,4 @@
+sqlite3:
+  :adapter: sqlite3
+  :database: vendor/plugins/blog_kit/test/blog_kit.sqlite3.db
+

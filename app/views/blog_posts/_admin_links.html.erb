@@ -1,0 +1,7 @@
+<% if current_user && current_user.admin? %>
+	<div class="blogAdminLinks">
+		<%= link_to 'New Blog Post', new_blog_post_path %>
+		<%= link_to 'Edit Drafts', drafts_blog_posts_path %>
+		<%= link_to 'Published Posts', blog_posts_path %>
+	</div>
+<% end %>

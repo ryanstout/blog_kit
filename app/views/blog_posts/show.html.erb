@@ -1,0 +1,6 @@
+<%= stylesheet_link_tag 'blog_kit' %>
+<%= stylesheet_link_tag 'syntax/' + (BlogKit.instance.settings['theme'] || 'mac_classic') %>
+
+<%= render :object => @blog_post, :partial => 'blog_posts/blog_post', :locals => {:show_comments => true} %>
+
+<%= render :partial => 'admin_links' %>

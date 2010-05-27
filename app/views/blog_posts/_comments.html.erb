@@ -1,0 +1,6 @@
+<div class="blogComments">
+	<h2>Showing <%= pluralize(@blog_post.blog_comments.count, 'comment') %></h2>
+	<% @blog_comments.each do |comment| %>
+		<%= render :partial => 'blog_posts/comment', :locals => {:comment => comment} %>
+	<% end %>
+</div>

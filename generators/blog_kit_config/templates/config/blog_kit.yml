@@ -1,0 +1,29 @@
+# BlogKit configuration file
+---
+
+# ================ Visual settings ================
+
+# Show "Published By ..."
+blog_name: '__EDIT BLOG_NAME__'
+show_user_who_published: true
+post_date_format: '%m/%d/%Y at %I:%M%p' # strftime format
+gravatar: true
+anonymous_comments: true
+
+use_markdown: true
+
+# Only enabled if you don't use markdown
+# html_editor: true
+
+layout: 'application'
+
+theme: 'mac_classic'
+
+# Link to the default user path (/users/[id])
+link_to_user: true
+
+# Akismet settings (spam filtering)
+# akismet_key: '__your_key_here__'
+
+# Blog URL - required for akismet
+# blog_url: '__your_blog_url_here__'

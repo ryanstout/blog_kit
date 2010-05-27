@@ -1,0 +1,19 @@
+<%= stylesheet_link_tag 'blog_kit' %>
+<%= stylesheet_link_tag 'syntax/' + (BlogKit.instance.settings['theme'] || 'mac_classic') %>
+
+<%= render :partial => 'admin_links' %>
+
+<% if @blog_posts.size == 0 && !params[:page] %>
+	<div class="blogPost">
+		<h1>No Blog Posts</h1>
+		<p>There are currently no blog posts, please check back shortly.</p>
+	</div>
+<% else %>
+	<%= render :collection => @blog_posts, :partial => 'blog_post' %>
+<% end %>
+
+<div class="blogPages">
+	<%= will_paginate @blog_posts %>
+</div>
+
+<%= render :partial => 'admin_links' %>
