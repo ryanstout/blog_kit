@@ -83,7 +83,7 @@ twilight
 zenburnesque
 
 
-Copyright (c) 2010 [name of plugin creator], released under the MIT license
+Copyright (c) 2010 Ryan Stout, released under the MIT license
 
 
 /script/plugin install --revision "tag 1.0.1" http://github.com/dasil003/tm_syntax_highlighting.git
