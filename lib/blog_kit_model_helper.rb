@@ -1,16 +1,18 @@
 begin
 	require 'bluecloth'
 rescue Exception => e
+	require 'erb'
 	puts "Could not load bluecloth"
 end
 begin
 	require 'uv'
 rescue Exception => e
+	require 'erb'
 	puts "Could not load UltraViolet"
 end
 
 module BlogKitModelHelper
-	def code_highlight_and_markdown(text, options = {})
+	def code_highlight_and_markdown(text, markdown_options = {})
     text_pieces = text.split(/(<code>|<code lang="[A-Za-z0-9_-]+">|
       <code lang='[A-Za-z0-9_-]+'>|<\/code>)/)
     in_pre = false
@@ -29,13 +31,13 @@ module BlogKitModelHelper
 				if defined?(Uv)
 	        Uv.parse( piece.strip, "xhtml", lang, true, BlogKit.instance.settings['theme'] || 'mac_classic')
 				else
-					"<code>#{piece}</code>"
+					"<code>#{ERB::Util.html_escape(piece)}</code>"
 				end
       else
 				if defined?(BlueCloth)
-	        BlueCloth.new(piece).to_html					
+	        BlueCloth.new(piece, markdown_options).to_html
 				else
-					piece
+					ERB::Util.html_escape(piece)
 				end
       end
     end

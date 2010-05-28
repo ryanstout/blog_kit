@@ -45,6 +45,14 @@ CSS files for the code highlighter will be copied into public/stylesheets/syntax
     
 Then you will want to make sure your app meets the setup requirements below.
 
+Assumptions
+===========
+
+BlogKit makes the following assumptions
+
++ flash messages displaying is handled via the layout
+
+
 Setup
 =====
 
@@ -110,29 +118,32 @@ To get code highlighted, place the following tag:
 
     </code>
 
-Available Themes
-================
-active4d
-all_hallows_eve
-amy
-blackboard
-brilliance_black
-brilliance_dull
-cobalt
-dawn
-eiffel
-espresso_libre
-idle
-iplastic
-lazy
-mac_classic
-magicwb_amiga
-pastels_on_dark
-slush_poppies
-spacecadet
-sunburst
-twilight
-zenburnesque
+Available Code Highlighting Themes
+==================================
+
+Below is a list of the themes you can choose from for code highlighting
+
+    active4d
+    all_hallows_eve
+    amy
+    blackboard
+    brilliance_black
+    brilliance_dull
+    cobalt
+    dawn
+    eiffel
+    espresso_libre
+    idle
+    iplastic
+    lazy
+    mac_classic
+    magicwb_amiga
+    pastels_on_dark
+    slush_poppies
+    spacecadet
+    sunburst
+    twilight
+    zenburnesque
 
 
 Copyright (c) 2010 Ryan Stout, released under the MIT license

@@ -3,13 +3,20 @@
 
 # ================ Visual settings ================
 
-# Show "Published By ..."
 blog_name: '__EDIT BLOG_NAME__'
+
+# Show "Published By ..."
 show_user_who_published: true
+
 post_date_format: '%m/%d/%Y at %I:%M%p' # strftime format
+
+# Enable gravatar support next to comments and posts
 gravatar: true
+
+# Allow people who are not logged in to post anonymous comments
 anonymous_comments: true
 
+# User Markdown for parsing posts
 use_markdown: true
 
 # Only enabled if you don't use markdown

@@ -21,7 +21,7 @@ class BlogComment < ActiveRecord::Base
 	end
 	
 	def parsed_body
-		self.code_highlight_and_markdown(self.body)
+		self.code_highlight_and_markdown(self.body, {:escape_html => true})
 	end
 	
 	def user_name
