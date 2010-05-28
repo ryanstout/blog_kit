@@ -21,6 +21,13 @@ Coming Soon:
 - Image upload
 
 
+Install
+=======
+
+in rails:
+
+  ./script/plugin install git@github.com:ryanstout/blog_kit.git
+
 Setup
 =====
 
