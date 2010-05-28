@@ -1,0 +1,44 @@
+.blogComment {
+	padding: 10px;
+	border-top: 1px solid #ccc;
+	clear: both;
+}
+
+.blogNewComment {
+	margin-top: 5px;
+	clear: both;
+}
+
+.blogNewCommentField {
+	width: 100%;
+	height: 130px;
+}
+
+.blogPoster {
+	font-style: italic;
+}
+
+.blogCommentAdmin {
+	background-color: #EBE0BF;
+}
+
+.blogFooter a {
+	margin-right: 5px;
+}
+
+.blogUserImage {
+	float: right;
+	margin: 0px 0px 5px 5px;
+}
+
+.blogAdminLinks {
+	padding: 10px;
+}
+.blogAdminLinks a {
+	margin-right: 5px;
+}
+
+.blogMarkdownHelp {
+	float: right;
+	margin-left: 20px;
+}

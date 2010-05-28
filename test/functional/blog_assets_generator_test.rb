@@ -6,6 +6,7 @@ class BlogAssetsGeneratorTest < Test::Unit::TestCase
   def setup
     FileUtils.mkdir_p(fake_rails_root)
     FileUtils.mkdir_p(fake_rails_root + '/config')
+    FileUtils.mkdir_p(fake_rails_root + '/public/stylesheets')
     @original_files = file_list
   end
 
