@@ -17,8 +17,9 @@ BlogKit is a rails plugin to add a blog to your app.  It has the following featu
 + Atom Feeds
 
 Coming Soon:
-- Tags
-- Image upload
+
++ Tags
++ Image upload
 
 
 Install
@@ -26,7 +27,7 @@ Install
 
 in rails:
 
-  ./script/plugin install git@github.com:ryanstout/blog_kit.git
+    ./script/plugin install git@github.com:ryanstout/blog_kit.git
 
 Setup
 =====
@@ -61,9 +62,9 @@ Code Highlighting Example
 
 To get code highlighted, place the following tag:
 
-<code lang="ruby">
+    <code lang="ruby">
 
-</code>
+    </code>
 
 Available Themes
 ================
