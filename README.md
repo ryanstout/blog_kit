@@ -38,14 +38,14 @@ be able to use BlogKit.  These methods, while not standardized are very common, 
 like Authlogic and restful_authentication.
 
 ApplicationController should respond to:
-#require_user
-#current_user
+    #require_user
+    #current_user
 
 User model should respond to:
-#admin?  - returns true if the user can edit posts and delete comments
-#name	 - the users name
-#blog_image_url (optional)
-#email (options - for gravatar support)
+    #admin?  - returns true if the user can edit posts and delete comments
+    #name	 - the users name
+    #blog_image_url (optional)
+    #email (options - for gravatar support)
 
 Requirements
 ============
