@@ -29,6 +29,18 @@ in rails:
 
     ./script/plugin install git@github.com:ryanstout/blog_kit.git
 
+The plugin will then copy in migrations for the BlogPost and BlogComment models.  Install the tables with:
+
+    rake db:migrate
+
+The blog_kit configuration file will be installed in config/blog_kit.yml, you can enable and disable features there.
+
+An editable CSS file for the blog pages will be copied into public/stylesheets/blog_kit.css
+
+CSS files for the code highlighter will be copied into public/stylesheets/syntax/
+    
+Then you will want to make sure your app meets the setup requirements below.
+
 Setup
 =====
 
