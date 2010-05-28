@@ -56,11 +56,12 @@ like Authlogic and restful_authentication.
 ApplicationController should respond to:
     #require_user
     #current_user
+    #title - (optional passes in the pages title as the first argument)
 
 User model should respond to:
     #admin?  - returns true if the user can edit posts and delete comments
     #name	 - the users name
-    #blog_image_url (optional)
+    #blog_image_url (optional, the users photo, show next to comments/posts)
     #email (options - for gravatar support)
     
 Once you have everything setup, you can see and manage the blog at /blog_posts  Make sure that you have
