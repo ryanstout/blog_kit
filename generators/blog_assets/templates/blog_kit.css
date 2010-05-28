@@ -31,9 +31,20 @@
 	margin: 0px 0px 5px 5px;
 }
 
-.blogAdminLinks {
-	padding: 10px;
+.blogList {
+	list-style: none;
+	padding: 5px 10px;
+	margin: 0;
 }
+.blogList li {
+	display: inline;
+	padding: 0px 10px;
+	border-left: 1px solid #777;
+}
+.blogList li.blogListFirst {
+	border-left: none;
+}
+
 .blogAdminLinks a {
 	margin-right: 5px;
 }

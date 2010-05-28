@@ -1,7 +1,10 @@
 BlogKit
 =======
 
-BlogKit is a rails plugin to add a blog to your app.  It has the following features.
+BlogKit is a rails plugin to add a blog to your app.  The goal is to provide common blog
+functionality that integrates into your existing app while keeping things simple.
+
+BlogKit has the following features.
 
 + Admin for Blog Articles
 + Search engine friendly urls
@@ -20,6 +23,7 @@ Coming Soon:
 
 + Tags
 + Image upload
++ Follow comments (via e-mail)
 
 
 Install
@@ -88,8 +92,7 @@ Customization
 
 Be sure to edit config/blog_kit.yml, many common settings can be changed there.
 
-View Customization
-------------------
+** View Customization **
 
 BlogKit is built as a rails engine plugin (for rails 2.3.x, not the previous engines plugin).  You can see
 the models, views, and controllers in vendor/plugins/blog_kit/app/  You can change them by copying any of 
@@ -132,6 +135,3 @@ zenburnesque
 
 
 Copyright (c) 2010 Ryan Stout, released under the MIT license
-
-
-/script/plugin install --revision "tag 1.0.1" http://github.com/dasil003/tm_syntax_highlighting.git

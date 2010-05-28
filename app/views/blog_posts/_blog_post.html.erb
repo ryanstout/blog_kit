@@ -17,12 +17,6 @@
 		<% end %>
 		on 
 		<span class="blogPostDate"><%= blog_post.formatted_updated_at %></span>
-	
-		<% if current_user && current_user.admin? %>
-			<br />
-			<%= link_to('Edit Post', edit_blog_post_path(blog_post))%>
-			<%= link_to('Delete', blog_post_path(blog_post), :method => :delete, :confirm => "Are you sure you want to destroy the post: #{blog_post.title}") %>
-		<% end %>
 	</p>
 
 	<div class="blogPostBody">
@@ -31,10 +25,18 @@
 
 	
 	<p class="blogFooter">
-		<%= link_to(pluralize(blog_post.blog_comments.count, 'comment'), blog_post_path(blog_post), :class => 'blogCommentCount') %>
-		<% if params[:action] == 'show' %>
-			<%= link_to('Back', blog_posts_path) %>		
-		<% end %>
+		<ul class="blogList">
+			<li class="blogListFirst"><%= link_to(pluralize(blog_post.blog_comments.count, 'comment'), blog_post_path(blog_post), :class => 'blogCommentCount') %></li>
+			<% if params[:action] == 'show' %>
+				<li><%= link_to('Back', blog_posts_path) %></li>
+			<% end %>
+		
+		
+			<% if current_user && current_user.admin? %>
+				<li><%= link_to('Edit Post', edit_blog_post_path(blog_post))%></li>
+				<li><%= link_to('Delete', blog_post_path(blog_post), :method => :delete, :confirm => "Are you sure you want to destroy the post: #{blog_post.title}") %></li>
+			<% end %>
+		</ul>
 	</p>
 	
 	<% if defined?(show_comments) %>
