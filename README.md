@@ -58,6 +58,9 @@ User model should respond to:
     #name	 - the users name
     #blog_image_url (optional)
     #email (options - for gravatar support)
+    
+Once you have everything setup, you can see and manage the blog at /blog_posts  Make sure that you have
+all of the requirements below met.
 
 Requirements
 ============
@@ -69,11 +72,33 @@ Rails 2.3.x (Rails 3 support coming soon)
 Optional:
 
 - Ultraviolet (and its deps, for code highlighting)
+
+    Install Oniguruma if 1.8.x
+    http://www.geocities.jp/kosako3/oniguruma/
+    
+    gem install ultraviolet
+    
 - BlueCloth 2 (for markdown)
+
+    gem install bluecloth
+
+
+Customization
+=============
+
+Be sure to edit config/blog_kit.yml, many common settings can be changed there.
+
+View Customization
+------------------
+
+BlogKit is built as a rails engine plugin (for rails 2.3.x, not the previous engines plugin).  You can see
+the models, views, and controllers in vendor/plugins/blog_kit/app/  You can change them by copying any of 
+them into your apps /app directory.  Rails will look in /app before looking in vendor/plugins/blog_kit/app/
+Once they are copied into /app, you can customize the appearance/behavior of the blog pages.
 
 
 Code Highlighting Example
-=======
+=========================
 
 To get code highlighted, place the following tag:
 
