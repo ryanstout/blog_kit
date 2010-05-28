@@ -64,9 +64,12 @@ Requirements
 
 Rails 2.3.x (Rails 3 support coming soon)
 
-- Ultraviolet (and its deps)
 - Will_Paginate
-- BlueCloth 2
+
+Optional:
+
+- Ultraviolet (and its deps, for code highlighting)
+- BlueCloth 2 (for markdown)
 
 
 Code Highlighting Example

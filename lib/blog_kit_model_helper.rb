@@ -1,3 +1,14 @@
+begin
+	require 'bluecloth'
+rescue Exception => e
+	puts "Could not load bluecloth"
+end
+begin
+	require 'uv'
+rescue Exception => e
+	puts "Could not load UltraViolet"
+end
+
 module BlogKitModelHelper
 	def code_highlight_and_markdown(text, options = {})
     text_pieces = text.split(/(<code>|<code lang="[A-Za-z0-9_-]+">|
@@ -15,9 +26,17 @@ module BlogKitModelHelper
         nil
       elsif in_pre
         lang = language ? language : "ruby"
-        Uv.parse( piece.strip, "xhtml", lang, true, BlogKit.instance.settings['theme'] || 'mac_classic')
+				if defined?(Uv)
+	        Uv.parse( piece.strip, "xhtml", lang, true, BlogKit.instance.settings['theme'] || 'mac_classic')
+				else
+					"<code>#{piece}</code>"
+				end
       else
-        BlueCloth.new(piece).to_html
+				if defined?(BlueCloth)
+	        BlueCloth.new(piece).to_html					
+				else
+					piece
+				end
       end
     end
 	end

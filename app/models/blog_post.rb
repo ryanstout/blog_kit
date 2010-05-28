@@ -1,5 +1,3 @@
-require 'bluecloth'
-require 'uv'
 
 class BlogPost < ActiveRecord::Base
 	include BlogKitModelHelper
