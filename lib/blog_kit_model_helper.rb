@@ -14,7 +14,6 @@ end
 
 module BlogKitModelHelper
 	def code_highlight_and_markdown(text, markdown_options = {})
-		puts "TEXT: #{text.inspect}"
     text_pieces = text.split(/(<code>|<code lang="[A-Za-z0-9_-]+">|
       <code lang='[A-Za-z0-9_-]+'>|<\/code>)/)
     in_pre = false
@@ -39,7 +38,6 @@ module BlogKitModelHelper
 				if defined?(BlueCloth)
 	        BlueCloth.new(piece, markdown_options).to_html
 				else
-					puts "HTML ESCAPE"
 					ERB::Util.html_escape(piece)
 				end
       end
