@@ -7,7 +7,16 @@
 			<p>Posting as <span class="blogPoster"><%= current_user.name %></span></p>
 		<% end %>
 		<% form_for([@blog_post, blog_comment]) do |f| %>
-			<%= f.error_messages %>
+			<% if blog_comment.errors.size > 0 %>
+				<div id="errorExplanation">
+					<h2>The comment could not be saved:</h2>
+					<ul>
+						<% blog_comment.errors.full_messages.each do |msg| %>
+							<li><%= msg %></li>
+						<% end %>
+					</ul>
+				</div>
+			<% end %>
 			<% unless current_user %>
 				<p>
 					<%= f.label :name %><br />

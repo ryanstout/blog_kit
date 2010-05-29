@@ -30,7 +30,16 @@
 		</div>
 	<% end %>
 	<% form_for(@blog_post) do |f| %>
-		<%= f.error_messages %>
+		<% if @blog_post.errors.size > 0 %>
+			<div id="errorExplanation">
+				<h2>The blog post could not be saved:</h2>
+				<ul>
+					<% @blog_post.errors.full_messages.each do |msg| %>
+						<li><%= msg %></li>
+					<% end %>
+				</ul>
+			</div>
+		<% end %>
 		<p>
 			<%= f.label :title %><br />
 			<%= f.text_field :title %>

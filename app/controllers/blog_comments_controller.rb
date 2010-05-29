@@ -27,20 +27,6 @@ class BlogCommentsController < ApplicationController
     end
   end
 
-  def update
-    @blog_comment = BlogComment.find(params[:id])
-
-    respond_to do |format|
-      if @blog_comment.update_attributes(params[:blog_comment])
-        flash[:notice] = 'BlogComment was successfully updated.'
-        format.html { redirect_to(@blog_comment) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @blog_comment.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
 
   def destroy
     @blog_comment = BlogComment.find(params[:id])
