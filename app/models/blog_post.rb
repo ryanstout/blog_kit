@@ -11,8 +11,13 @@ class BlogPost < ActiveRecord::Base
 	validates_presence_of :title
 	validates_presence_of :body
 	
-	named_scope :published, { :conditions => {:published => true }}
-	named_scope :drafts, { :conditions => {:published => false }}
+	if defined?(Rails) && Rails::VERSION::MAJOR >= 3
+		scope :published, { :conditions => {:published => true }}
+		scope :drafts, { :conditions => {:published => false }}
+	else
+		named_scope :published, { :conditions => {:published => true }}
+		named_scope :drafts, { :conditions => {:published => false }}
+	end
 	
 	before_save :check_published
 	
@@ -30,7 +35,9 @@ class BlogPost < ActiveRecord::Base
 	
 	def user_name(skip_link=false)
 		if !skip_link && BlogKit.instance.settings['link_to_user']
-			return "<a href=\"/users/#{self.user.id}\">#{self.user.name}</a>"
+			link = "<a href=\"/users/#{self.user.id}\">#{self.user.name}</a>"
+			return link.html_safe if link.respond_to?(:html_safe)
+			return link
 		else
 			return self.user.name
 		end

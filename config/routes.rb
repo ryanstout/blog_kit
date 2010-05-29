@@ -2,7 +2,7 @@ if defined?(Rails) && Rails::VERSION::MAJOR >= 3
 	# Rails 3
 	Rails.application.routes.draw do |map|
 		resources :blog_posts do
-			resource :blog_comments
+			resources :blog_comments
 			
 			collection do
 				get :drafts

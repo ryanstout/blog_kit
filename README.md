@@ -96,6 +96,12 @@ Optional:
     gem install bluecloth
 
 
+Rails 3
+=======
+
+Rails 3 is supported, however, if you are using legacy routing, you may need to copy in routes from config/routes.rb to
+your main routes.rb file
+
 Customization
 =============
 

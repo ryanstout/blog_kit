@@ -1,8 +1,9 @@
+require 'rubygems'
 begin
 	require 'bluecloth'
 rescue Exception => e
 	require 'erb'
-	puts "Could not load bluecloth"
+	puts "Could not load bluecloth #{e.inspect}"
 end
 begin
 	require 'uv'
@@ -13,11 +14,12 @@ end
 
 module BlogKitModelHelper
 	def code_highlight_and_markdown(text, markdown_options = {})
+		puts "TEXT: #{text.inspect}"
     text_pieces = text.split(/(<code>|<code lang="[A-Za-z0-9_-]+">|
       <code lang='[A-Za-z0-9_-]+'>|<\/code>)/)
     in_pre = false
     language = nil
-    text_pieces.collect do |piece|
+    post = text_pieces.collect do |piece|
       if piece =~ /^<code( lang=(["'])?(.*)\2)?>$/
         language = $3
         in_pre = true
@@ -37,16 +39,20 @@ module BlogKitModelHelper
 				if defined?(BlueCloth)
 	        BlueCloth.new(piece, markdown_options).to_html
 				else
+					puts "HTML ESCAPE"
 					ERB::Util.html_escape(piece)
 				end
       end
-    end
+    end.join('')
+
+		return post.html_safe if post.respond_to?(:html_safe)
+		return post
 	end
 	
 	def user_image_tag
 		if self.user && self.user.respond_to?(:blog_image_url) && self.user.blog_image_url
 			# Load image from model
-			return "<img src=\"#{self.user.blog_image_url}\" />"
+			ret = "<img src=\"#{self.user.blog_image_url}\" />"
 		elsif BlogKit.instance.settings['gravatar']
 			# Gravatar
 			require 'digest/md5'
@@ -59,10 +65,13 @@ module BlogKitModelHelper
 			end
 			
 			hash = Digest::MD5.hexdigest(email.downcase)
-			return "<img src=\"http://www.gravatar.com/avatar/#{hash}.jpg\" />"
+			ret = "<img src=\"http://www.gravatar.com/avatar/#{hash}.jpg\" />"
 		else
 			# No Image
 			return ''
 		end
+		
+		return ret.html_safe if ret.respond_to?(:html_safe)
+		return ret
 	end
 end
