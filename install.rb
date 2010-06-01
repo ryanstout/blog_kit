@@ -1,13 +1,17 @@
 # When the BlogKit plugin is installed run the blog_assets generator
 begin
-	# First have to load up rails
-	unless Kernel.const_defined?('RAILS_ROOT')
-		Kernel.const_set('RAILS_ROOT', File.join(File.dirname(__FILE__), '..', '..', '..'))
+	if defined?(Rails)
+		rails_root = Rails.root
+	elsif defined?(RAILS_ROOT)
+		rails_root = RAILS_ROOT
+	else
+		rails_root = File.join(File.dirname(__FILE__), '..', '..', '..')
 	end
 
-	if (File.exists?(RAILS_ROOT) && File.exists?(File.join(RAILS_ROOT, 'app')))
-		require "#{RAILS_ROOT}/config/boot"
-		require "#{RAILS_ROOT}/config/environment"
+
+	if (File.exists?(rails_root) && File.exists?(File.join(rails_root, 'app')))
+		require "#{rails_root}/config/boot"
+		require "#{rails_root}/config/environment"
 		require 'rails_generator'
 		require 'rails_generator/scripts/generate'
 	end
