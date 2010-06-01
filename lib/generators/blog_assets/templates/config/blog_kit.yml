@@ -29,6 +29,9 @@ theme: 'mac_classic'
 # Link to the default user path (/users/[id])
 link_to_user: true
 
+# Show line numbers next to code
+show_link_numbers: false
+
 # Akismet settings (spam filtering)
 # akismet_key: '__your_key_here__'
 
