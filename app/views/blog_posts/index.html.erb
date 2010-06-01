@@ -1,3 +1,4 @@
+<%= csrf_meta_tag if defined?(csrf_meta_tag) %>
 <% self.respond_to?(:title) && title(BlogKit.instance.settings['blog_name'] || 'Blog') %>
 <% @show_title = false -%>
 <%= stylesheet_link_tag 'blog_kit' %>
