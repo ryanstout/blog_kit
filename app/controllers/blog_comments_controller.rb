@@ -52,4 +52,14 @@ class BlogCommentsController < ApplicationController
 			
 			return true
 		end
+		
+		def require_admin
+			if !current_user || !current_user.admin?
+				flash[:notice] = 'You must be an admin to view this page'
+				redirect_to blog_posts_path
+				return false
+			end
+
+			return true
+		end
 end
