@@ -20,7 +20,8 @@ class BlogKit
 	end
 	
 	def load_config
-		file_name = "#{RAILS_ROOT}/config/blog_kit.yml"
+		rails_root = defined?(Rails) ? Rails.root : RAILS_ROOT
+		file_name = "#{rails_root}/config/blog_kit.yml"
 		if File.exists?(file_name)
 			begin
 				@settings = YAML::load(File.open(file_name).read)
