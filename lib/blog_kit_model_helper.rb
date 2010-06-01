@@ -30,7 +30,7 @@ module BlogKitModelHelper
       elsif in_pre
         lang = language ? language : "ruby"
 				if defined?(Uv)
-	        Uv.parse( piece.strip, "xhtml", lang, BlogKit.instance.settings['show_line_numbers'] || false, BlogKit.instance.settings['theme'] || 'mac_classic')
+	        "<div class=\"blogKitCode\">" + Uv.parse( piece.strip, "xhtml", lang, BlogKit.instance.settings['show_line_numbers'] || false, BlogKit.instance.settings['theme'] || 'mac_classic') + "</div>"
 				else
 					"<code>#{ERB::Util.html_escape(piece)}</code>"
 				end
