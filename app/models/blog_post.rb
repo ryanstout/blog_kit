@@ -16,8 +16,8 @@ class BlogPost < ActiveRecord::Base
 	validates_presence_of :title
 	validates_presence_of :body
 	
-	named_scope :published, { :conditions => {:published => true }}
-	named_scope :drafts, { :conditions => {:published => false }}
+	scope :published, { :conditions => {:published => true }}
+	scope :drafts, { :conditions => {:published => false }}
 	
 	before_save :check_published, :if => :not_resaving?
 	before_save :save_tags, :if => :not_resaving?

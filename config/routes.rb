@@ -1,3 +1,14 @@
-ActionController::Routing::Routes.draw do |map|
-  map.resources :blog_posts, :collection => {:drafts => :any}, :member => {:tag => :any}, :has_many => :blog_comments
+Rails.application.routes.draw do |map|
+	resources :blog_posts do
+		resources :blog_comments
+		resources :blog_images
+		
+		collection do
+			get :drafts
+		end
+		
+		member do
+			get :tag
+		end
+	end
 end

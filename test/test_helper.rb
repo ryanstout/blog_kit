@@ -59,7 +59,7 @@ end
 
 def setup_user
 	@user = User.new(:name => 'Test User', :email => 'test@test.com', :admin => true)
-	@user.save(false)
+	@user.save(:validate => false)
 end
 
 def assert_includes(elem, array, message = nil)
