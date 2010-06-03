@@ -1,64 +1,136 @@
-<% if BlogKit.instance.settings['use_markdown'] == false && BlogKit.instance.settings['html_editor'] == true %>
-	<script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script>
-	<script type="text/javascript">
-	bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
-	</script>
-<% end %>
+<script>
+function addImage() {
+	var newImageDiv = document.getElementById('newImage');
+	var blogImagesDiv = document.getElementById('blogImages');
+	
+	blogImagesDiv.innerHTML += (newImageDiv.innerHTML+'').replace(/replace_with_rand/g, Math.round(Math.random() * 1000000000));
+	
+}
 
-<div class="editBlogPost">
-	<% if BlogKit.instance.settings['use_markdown'] != false %>
-		<div class="blogMarkdownHelp">
-			<h2>Editing Help</h2>
-			<p>This blog uses Markdown to format its syntax, here is a quick guide</p>
-			<ul>
-				<li>**bold text**</li>
-				<li>*italicized text*</li>
-				<li>&gt;This text is blockquoted</li>
-				<li>&gt;&gt;This text is a nested blockquote</li>
-				<li>* This is an unordered list (ul) item</li>
-				<li>1. This is an ordered list (ol) item</li>
-				<li>[This is a link](http://www.example.com/)</li>
-				<li>[This is a link](http://www.example.com/ "with a title attribute")</li>
-				<li>
-					Code can be highlighted with the following wrapper<br />
+function removeImage(image_id) {
+	document.getElementById('image_' + image_id).value = '1';
+	document.getElementById('imageDiv' + image_id).style.display = 'none';
+}
+
+function insertImage(image_id) {
+	var blogBody = document.getElementById('blog_post_body');
+	blogBody.value += '\n![]({blog_image:' + image_id + ':small})\n';
+}
+</script>
+
+<% form_for(@blog_post, :html => { :multipart => true }) do |f| %>
+	<% if BlogKit.instance.settings['use_markdown'] == false && BlogKit.instance.settings['html_editor'] == true %>
+		<script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script>
+		<script type="text/javascript">
+		bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
+		</script>
+	<% end %>
+
+	<div class="editBlogPost">
+		<div class="blogEditLeftPanel">
+			<% if @blog_post.errors.size > 0 %>
+				<div id="errorExplanation">
+					<h2>The blog post could not be saved:</h2>
+					<ul>
+						<% @blog_post.errors.full_messages.each do |msg| %>
+							<li><%= msg %></li>
+						<% end %>
+					</ul>
+				</div>
+			<% end %>
+			<p>
+				<%= f.label :title %><br />
+				<%= f.text_field :title %>
+			</p>
+			<p>
+				<%= f.label :body %><br />
+				<%= f.text_area :body %>
+			</p>
+			<p>
+				<%= f.label :tags, 'Tags (comma seperated)' %><br />
+				<%= f.text_field :tags %>
+			</p>
+			<p>
+				<%= f.label :published, 'Status' %><br />
+				<%= f.radio_button :published, false %><%= f.label :published_false, 'Draft' %>
+				<%= f.radio_button :published, true %><%= f.label :published_true, 'Publish' %>
+			</p>
+			<p>
+				<%= f.submit 'Save' %> or <%= link_to 'Back', blog_posts_path %>
+			</p>
+		</div>
+		<div class="blogEditRightPanel">
+			<% if BlogKit.instance.paperclip_support? %>
+				<h2>Images</h2>
+			
+				<p>
+					You can upload images for the blog post below and insert them using the [insert] 
+					link.  Once inserted, you can change the size to thumb, small, medium, or large.
+					Small is the default.
+				</p>
+
+				<table id="blogImages">
+					<tr class="blogImageHeader">
+						<td></td>
+						<td>Image</td>
+						<td>ID</td>
+						<td>File</td>
+						<td></td>
+					</td>
+					<% f.fields_for(:blog_images) do |g| %>
+						<%= render :partial => 'image', :locals => {:g => g} %>
+					<% end %>
+				</table>
+			
+				<button onclick="addImage();return false;">Add Image</button>
+			<% else %>
+				<h2>Image Support</h2>
+				
+				<p>
+					Images can be inserted using the following tag:<br />
+					![alt text](image url)
+				</p>
+				<p>
+					You can also install the paperclip plugin to enable uploading images.
+				</p>
+			<% end %>
+
+			<% if BlogKit.instance.settings['use_markdown'] != false %>
+				<div class="blogMarkdownHelp">
+					<h2>Editing Help</h2>
+					<p>This blog uses Markdown to format its syntax, here is a quick guide</p>
+					<ul>
+						<li>**bold text**</li>
+						<li>*italicized text*</li>
+						<li>&gt;This text is blockquoted</li>
+						<li>&gt;&gt;This text is a nested blockquote</li>
+						<li>* This is an unordered list (ul) item</li>
+						<li>1. This is an ordered list (ol) item</li>
+						<li>[This is a link](http://www.example.com/)</li>
+						<li>[This is a link](http://www.example.com/ "with a title attribute")</li>
+						<li>
+							Code can be highlighted with the following wrapper<br />
 
 <pre>&lt;code lang=&quot;ruby&quot;&gt;
 	... your code ...
 &lt;/code&gt;</pre>
-				</li>
-			</ul>
+						</li>
+					</ul>
+				</div>
+			<% end %>
+
+
 		</div>
-	<% end %>
-	<% form_for(@blog_post) do |f| %>
-		<% if @blog_post.errors.size > 0 %>
-			<div id="errorExplanation">
-				<h2>The blog post could not be saved:</h2>
-				<ul>
-					<% @blog_post.errors.full_messages.each do |msg| %>
-						<li><%= msg %></li>
-					<% end %>
-				</ul>
-			</div>
+		<br style="clear: both;" />
+	</div>
+<% end %>
+	
+
+<!-- used to create new images -->
+<table id="newImage" style="display: none;">
+	<% fields_for(@empty_blog_post) do |h| %>
+		<% h.fields_for(:blog_images, :child_index => 'replace_with_rand') do |g| %>
+			<%= render :partial => 'image', :locals => {:g => g} %>
 		<% end %>
-		<p>
-			<%= f.label :title %><br />
-			<%= f.text_field :title %>
-		</p>
-		<p>
-			<%= f.label :body %><br />
-			<%= f.text_area :body %>
-		</p>
-		<p>
-			<%= f.label :tags, 'Tags (comma seperated)' %>
-			<%= f.text_field :tags %>
-		</p>
-		<p>
-			<%= f.label :published, 'Status' %><br />
-			<%= f.radio_button :published, false %><%= f.label :published_false, 'Draft' %>
-			<%= f.radio_button :published, true %><%= f.label :published_true, 'Publish' %>
-		</p>
-		<p>
-			<%= f.submit 'Save' %> or <%= link_to 'Back', blog_posts_path %>
-		</p>
 	<% end %>
-</div>
+</table>

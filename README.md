@@ -19,10 +19,10 @@ BlogKit has the following features.
 + Anonymous Comments (optional)
 + Atom Feeds
 + Tags
++ Image upload
 
 Coming Soon:
 
-+ Image upload
 + Follow comments (via e-mail)
 
 
@@ -99,8 +99,9 @@ Optional:
 Rails 3
 =======
 
-Rails 3 is supported, however, if you are using legacy routing, you may need to copy in routes from config/routes.rb to
-your main routes.rb file
+Rails 3 is supported via branching, however, if you are using legacy routing, you may need to copy in routes
+from config/routes.rb to your main routes.rb file.  When rails 3 is launched, we will start a rails2 branch
+to maintain support for rails 2, and we will pull out the branching code.
 
 To be able to use the delete links on posts, you will need to add the following to the top of your layout:
 

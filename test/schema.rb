@@ -38,4 +38,24 @@ ActiveRecord::Schema.define(:version => 0) do
     t.string   "perishable_token",  :default => "",    :null => false
   end
 
+	create_table "blog_images", :force => true do |t|
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.integer  "blog_post_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "blog_images", ["blog_post_id"], :name => "index_blog_images_on_blog_post_id"
+  
+  create_table "blog_tags", :force => true do |t|
+    t.integer "blog_post_id"
+    t.string  "tag",          :null => false
+  end
+
+  add_index "blog_tags", ["blog_post_id"], :name => "index_blog_tags_on_blog_post_id"
+  add_index "blog_tags", ["tag"], :name => "index_blog_tags_on_tag"
+
 end

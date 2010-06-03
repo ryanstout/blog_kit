@@ -43,4 +43,8 @@ class BlogKit
 	def settings
 		@settings
 	end
+	
+	def paperclip_support?
+		BlogImage.respond_to?(:has_attached_file)
+	end
 end

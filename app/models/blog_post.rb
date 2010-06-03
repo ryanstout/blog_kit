@@ -8,6 +8,10 @@ class BlogPost < ActiveRecord::Base
 	
 	has_many :blog_comments, :dependent => :destroy
 	has_many :blog_tags, :dependent => :destroy
+	has_many :blog_images, :dependent => :destroy
+	
+	accepts_nested_attributes_for :blog_images, :allow_destroy => true
+	
 	
 	validates_presence_of :title
 	validates_presence_of :body
@@ -20,8 +24,9 @@ class BlogPost < ActiveRecord::Base
 		named_scope :drafts, { :conditions => {:published => false }}
 	end
 	
-	before_save :check_published
-	before_save :save_tags
+	before_save :check_published, :if => :not_resaving?
+	before_save :save_tags, :if => :not_resaving?
+	after_save :replace_blog_image_tags, :if => :not_resaving?
 
 
 	def tags
@@ -52,6 +57,37 @@ class BlogPost < ActiveRecord::Base
 		end
 	end
 	
+	def not_resaving?
+		!@resaving
+	end
+	
+	# For images that haven't been uploaded yet, they get a random image id
+	# with 'upload' infront of it.  We replace those with their new image
+	# id
+	def replace_blog_image_tags
+		@resaving = true
+		self.body.gsub!(/[{]blog_image:upload[0-9]+:[a-zA-Z]+[}]/) do |image_tag|
+			random_id, size = image_tag.scan(/upload([0-9]+)[:]([a-zA-Z]+)/).flatten
+			
+			new_id = random_id
+			
+			puts "RAND: #{new_id}"
+			matching_image = self.blog_images.reject {|bi| !bi.random_id || bi.random_id != random_id }.first
+			
+			if matching_image
+				new_id = matching_image.id
+				puts "Replace: #{new_id}"
+			end
+			
+			"{blog_image:#{new_id}:#{size}}"
+		end
+		
+		self.save
+		@resaving = false
+		
+		return true
+	end
+	
 	def check_published
 		if self.published_change && self.published_change == [false, true]
 			# Moved to published state, update published_on
@@ -75,7 +111,18 @@ class BlogPost < ActiveRecord::Base
 	end
 
 	def parsed_body
-		self.code_highlight_and_markdown(self.body)
+		image_parsed_body = self.body.gsub(/[{]blog_image[:]([0-9]+)[:]([a-zA-Z]+)[}]/) do |str|
+			puts "IMAGE ID: #{$1.to_i}"
+			img = BlogImage.find_by_id($1.to_i)
+			
+			if img
+				img.image.url($2)
+			else
+				''
+			end
+		end
+		
+		return code_highlight_and_markdown(image_parsed_body)
 	end
 	
 	def formatted_updated_at

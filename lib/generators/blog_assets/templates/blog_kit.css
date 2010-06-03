@@ -49,7 +49,26 @@
 	margin-right: 5px;
 }
 
-.blogMarkdownHelp {
-	float: right;
+.blogEditRightPanel {
+	float: left;
 	margin-left: 20px;
+	width: 450px;
+}
+.blogEditLeftPanel {
+	float: left;
+	width: 350px;
+}
+#blogImages {
+	width: 100%;
+}
+.blogImageHeader td {
+	font-weight: bold;
+}
+.imageFileName {
+	width: 120px;
+	overflow-x: hidden;
+}
+
+.blogMarkdownHelp {
+	margin-top: 20px;
 }

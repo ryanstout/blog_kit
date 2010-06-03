@@ -22,6 +22,7 @@ if defined?(Rails) && Rails::VERSION::MAJOR >= 3
 			migration_template 'blog_comments_migration.rb', "db/migrate/create_blog_comments.rb"
 			migration_template 'blog_posts_migration.rb', "db/migrate/create_blog_posts.rb"
 			migration_template 'blog_tags_migration.rb', "db/migrate/create_blog_tags.rb"
+			migration_template 'blog_images_migration.rb', "db/migrate/create_blog_images.rb"
 			
 			copy_file "config/blog_kit.yml", "config/blog_kit.yml"
 			copy_file "blog_kit.css", "public/stylesheets/blog_kit.css"
@@ -63,6 +64,7 @@ else
 	      m.migration_template 'blog_comments_migration.rb', "db/migrate", {:migration_file_name => "create_blog_comments"}
 	      m.migration_template 'blog_posts_migration.rb', "db/migrate", {:migration_file_name => "create_blog_posts"}
 	      m.migration_template 'blog_tags_migration.rb', "db/migrate", {:migration_file_name => "create_blog_tags"}
+	      m.migration_template 'blog_images_migration.rb', "db/migrate", {:migration_file_name => "create_blog_images"}
 				m.file "config/blog_kit.yml", "config/blog_kit.yml"
 				m.file "blog_kit.css", "public/stylesheets/blog_kit.css"
 			

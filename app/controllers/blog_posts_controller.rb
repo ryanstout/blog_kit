@@ -67,6 +67,9 @@ class BlogPostsController < ApplicationController
 
   def edit
     @blog_post = BlogPost.find(params[:id])
+
+		@empty_blog_post = BlogPost.new
+		@empty_blog_post.blog_images.build
   end
 
   def create

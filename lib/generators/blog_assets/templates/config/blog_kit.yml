@@ -37,3 +37,9 @@ show_link_numbers: false
 
 # Blog URL - required for akismet
 # blog_url: '__your_blog_url_here__'
+
+# Image Uploading options - assume paperclip is installed
+paperclip:
+  # path: ':rails_root/public/system/:attachment/:id/:style/:filename'
+  
+  # You can also override the image sizes for paperclip
