@@ -25,6 +25,9 @@ Coming Soon:
 
 + Follow comments (via e-mail)
 
+Todo:
+
++ Remove Rails 3 branch code and split into separate branches
 
 Install
 =======
@@ -97,7 +100,11 @@ Optional:
 
 - Paperclip
 
-    gem "paperclip", :branch => 'rails3'
+    Rails 3:
+    gem "paperclip", :git => 'http://github.com/thoughtbot/paperclip.git', :branch => 'rails3'
+    
+    add to config/application.rb inside of class Application < Rails::Application
+	Paperclip::Railtie.insert
 
 Rails 3
 =======
