@@ -25,12 +25,12 @@ Coming Soon:
 
 + Follow comments (via e-mail)
 
-Install
-=======
+Install for Rails3
+==================
 
 in rails:
 
-    ./script/plugin install http://github.com/ryanstout/blog_kit.git
+    ./script/plugin install http://github.com/ryanstout/blog_kit.git -r rails3
 
 The plugin will then copy in migrations for the BlogPost and BlogComment models.  Install the tables with:
 
@@ -74,10 +74,19 @@ User model should respond to:
 Once you have everything setup, you can see and manage the blog at /blog_posts  Make sure that you have
 all of the requirements below met.
 
+Rails 3 is supported via the rails3 branch, if you are using legacy routing, you may need to copy in routes
+from config/routes.rb to your main routes.rb file.
+
+To be able to use the delete links on posts, you will need to add the following to the top of your layout:
+
+    <%= csrf_meta_tag %>
+
+Also be sure that you have the proper javascript handling code for link_to '', :method => destroy
+
 Requirements
 ============
 
-Rails 2.3.x (Rails 3 support coming soon)
+Rails 3.x
 
 - Will_Paginate
 
@@ -88,20 +97,15 @@ Optional:
     Install Oniguruma if 1.8.x
     http://www.geocities.jp/kosako3/oniguruma/
     
-    config.gem 'ultraviolet'
+    gem 'ultraviolet'
     
 - BlueCloth 2 (for markdown)
 
-    config.gem 'bluecloth'
+    gem 'bluecloth'
 
 - Paperclip
 
-    config.gem 'paperclip', :source => 'http://github.com/thoughtbot/paperclip.git'
-
-Rails 3
-=======
-
-Rails 3 is supported, see rails3 branch
+    gem 'paperclip', :git => 'http://github.com/thoughtbot/paperclip.git', :branch => 'rails3'
 
 Customization
 =============
