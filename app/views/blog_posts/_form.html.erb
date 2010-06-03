@@ -30,8 +30,8 @@ function insertImage(image_id) {
 		<script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script>
 		<script type="text/javascript">
 		bkLib.onDomLoaded(function() {
-			var blog_editors = nicEditors.allTextAreas();
-			BLOG_EDITOR = blog_editors[0];
+			nicEditors.allTextAreas();
+			BLOG_EDITOR = nicEditors.findEditor('blog_post_body');
 		});
 		</script>
 	<% end %>
