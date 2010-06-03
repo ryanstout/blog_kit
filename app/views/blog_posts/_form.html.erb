@@ -87,14 +87,8 @@ function insertImage(image_id) {
 						<td>File</td>
 						<td></td>
 					</td>
-					<% if defined?(Rails) && Rails::VERSION::MAJOR >= 3 %>
-						<%= f.fields_for(:blog_images) do |g| %>
-							<%= render :partial => 'image', :locals => {:g => g} %>
-						<% end %>
-					<% else %>
-						<% f.fields_for(:blog_images) do |g| %>
-							<%= render :partial => 'image', :locals => {:g => g} %>
-						<% end %>
+					<% f.fields_for(:blog_images) do |g| %>
+						<%= render :partial => 'image', :locals => {:g => g} %>
 					<% end %>
 				</table>
 			
@@ -144,17 +138,9 @@ function insertImage(image_id) {
 
 <!-- used to create new images -->
 <table id="newImage" style="display: none;">
-	<% if defined?(Rails) && Rails::VERSION::MAJOR >= 3 %>
-		<%= fields_for(@empty_blog_post) do |h| %>
-			<% h.fields_for(:blog_images, :child_index => 'replace_with_rand') do |g| %>
-				<%= render :partial => 'image', :locals => {:g => g} %>
-			<% end %>
-		<% end %>
-	<% else %>
-		<% fields_for(@empty_blog_post) do |h| %>
-			<% h.fields_for(:blog_images, :child_index => 'replace_with_rand') do |g| %>
-				<%= render :partial => 'image', :locals => {:g => g} %>
-			<% end %>
+	<% fields_for(@empty_blog_post) do |h| %>
+		<% h.fields_for(:blog_images, :child_index => 'replace_with_rand') do |g| %>
+			<%= render :partial => 'image', :locals => {:g => g} %>
 		<% end %>
 	<% end %>
 </table>

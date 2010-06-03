@@ -1,5 +1,5 @@
 <tr id="imageDiv<%= g.options[:child_index] || g.object.id %>">
-	<% if g.object.new_record? %>
+	<% if !g.object || g.object.new_record? %>
 		<td>[<a href="" onclick="insertImage('upload<%= g.options[:child_index] %>');return false;">Insert</a>]</td>
 		<td></td>
 		<td><%= g.options[:child_index] %></td>
@@ -15,10 +15,6 @@
 	<% end %>
 	<td>
 		[<%= link_to_function('delete', "removeImage(#{g.options[:child_index] || g.object.id})") %>]
-		<% if defined?(Rails) && Rails::VERSION::MAJOR >= 3 %>
-			<%= g.hidden_field :_destroy, :id => "image_#{g.options[:child_index] || g.object.id}" %>
-		<% else %>
-			<%= g.hidden_field :_delete, :id => "image_#{g.options[:child_index] || g.object.id}" %>
-		<% end %>
+		<%= g.hidden_field :_delete, :id => "image_#{g.options[:child_index] || g.object.id}" %>
 	</td>
 </tr>

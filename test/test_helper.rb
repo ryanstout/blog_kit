@@ -59,11 +59,7 @@ end
 
 def setup_user
 	@user = User.new(:name => 'Test User', :email => 'test@test.com', :admin => true)
-	if defined?(Rails) && Rails::VERSION::MAJOR >= 3
-		@user.save(:validate => false)
-	else
-		@user.save(false)
-	end
+	@user.save(false)
 end
 
 def assert_includes(elem, array, message = nil)
