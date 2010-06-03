@@ -16,7 +16,7 @@ function removeImage(image_id) {
 
 function insertImage(image_id) {
 	var blogBody = document.getElementById('blog_post_body');
-	if (typeof(editor) !== 'undefined') {
+	if (typeof(BLOG_EDITOR) !== 'undefined') {
 		BLOG_EDITOR.setContent(BLOG_EDITOR.getContent() + '\n<img src="{blog_image:' + image_id + ':large}" />\n');
 	} else {
 		blogBody.value += '\n![]({blog_image:' + image_id + ':large})\n';
