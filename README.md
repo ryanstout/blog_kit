@@ -25,10 +25,6 @@ Coming Soon:
 
 + Follow comments (via e-mail)
 
-Todo:
-
-+ Remove Rails 3 branch code and split into separate branches
-
 Install
 =======
 
