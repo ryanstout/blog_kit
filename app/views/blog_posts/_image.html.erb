@@ -15,6 +15,6 @@
 	<% end %>
 	<td>
 		[<%= link_to_function('delete', "removeImage(#{g.options[:child_index] || g.object.id})") %>]
-		<%= g.hidden_field :_delete, :id => "image_#{g.options[:child_index] || g.object.id}" %>
+		<%= g.hidden_field :_destroy, :id => "image_#{g.options[:child_index] || g.object.id}" %>
 	</td>
 </tr>
