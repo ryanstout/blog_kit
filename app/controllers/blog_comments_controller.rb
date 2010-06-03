@@ -1,6 +1,8 @@
 class BlogCommentsController < ApplicationController
 	unloadable
 	
+	helper :blog
+	
 	layout(BlogKit.instance.settings['layout'] || 'application')
 	
 	before_filter :require_user, :only => [:destroy]

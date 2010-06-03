@@ -49,9 +49,14 @@
 			<%= f.text_area :body %>
 		</p>
 		<p>
+			<%= f.label :tags, 'Tags (comma seperated)' %>
+			<%= f.text_field :tags %>
+		</p>
+		<p>
 			<%= f.label :published, 'Status' %><br />
 			<%= f.radio_button :published, false %><%= f.label :published_false, 'Draft' %>
 			<%= f.radio_button :published, true %><%= f.label :published_true, 'Publish' %>
+		</p>
 		<p>
 			<%= f.submit 'Save' %> or <%= link_to 'Back', blog_posts_path %>
 		</p>

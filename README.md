@@ -18,10 +18,10 @@ BlogKit has the following features.
 + Image and Gravatar support
 + Anonymous Comments (optional)
 + Atom Feeds
++ Tags
 
 Coming Soon:
 
-+ Tags
 + Image upload
 + Follow comments (via e-mail)
 
@@ -102,6 +102,12 @@ Rails 3
 Rails 3 is supported, however, if you are using legacy routing, you may need to copy in routes from config/routes.rb to
 your main routes.rb file
 
+To be able to use the delete links on posts, you will need to add the following to the top of your layout:
+
+    <%= csrf_meta_tag %>
+
+Also be sure that you have the proper javascript handling code for link_to '', :method => destroy
+
 Customization
 =============
 
@@ -114,6 +120,19 @@ the models, views, and controllers in vendor/plugins/blog_kit/app/  You can chan
 them into your apps /app directory.  Rails will look in /app before looking in vendor/plugins/blog_kit/app/
 Once they are copied into /app, you can customize the appearance/behavior of the blog pages.
 
+Tag List
+========
+
+By default, the layout does not display a list of all tags.  This can be easily added to any layout in the 
+application by including this in the controller:
+
+    helper :blog
+
+Then in the view:
+
+    <%= blog_tags_list %>
+
+Also keep in mind that you can specify a layout just for the blog kit pages.
 
 Code Highlighting Example
 =========================

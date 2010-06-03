@@ -7,6 +7,7 @@ class BlogPost < ActiveRecord::Base
 	belongs_to :user
 	
 	has_many :blog_comments, :dependent => :destroy
+	has_many :blog_tags, :dependent => :destroy
 	
 	validates_presence_of :title
 	validates_presence_of :body
@@ -20,6 +21,32 @@ class BlogPost < ActiveRecord::Base
 	end
 	
 	before_save :check_published
+	before_save :save_tags
+
+
+	def tags
+		@tags ||= self.blog_tags.map(&:tag).join(', ')
+	end
+	
+	def tags=(tags)
+		@tags = tags
+	end
+
+	def tags_with_links
+		self.tags.split(/,/).collect {|t| "<a href=\"/blog_posts/tag/#{t.strip}\">#{t.strip}</a>" }.join(', ')
+	end
+	
+	def save_tags
+		if @tags
+			# Remove old tags
+			self.blog_tags.delete_all
+		
+			# Save new tags
+			@tags.split(/,/).each do |tag|
+				self.blog_tags.create(:tag => tag.strip)
+			end
+		end
+	end
 	
 	def check_published
 		if self.published_change && self.published_change == [false, true]

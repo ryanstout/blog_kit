@@ -1,6 +1,8 @@
 class BlogPostsController < ApplicationController
 	unloadable
 	
+	helper :blog
+	
 	layout(BlogKit.instance.settings['layout'] || 'application')
 	
 	before_filter :require_user, :except => [:index, :show]
@@ -16,6 +18,22 @@ class BlogPostsController < ApplicationController
 			format.atom
     end
   end
+
+	def tag
+		@tag = params[:id]
+		@blog_tags = BlogTag.find_all_by_tag(params[:id])
+		
+		if @blog_tags.size > 0
+	    @blog_posts = BlogPost.published.paginate(:page => params[:page], :conditions => ['id IN (?)', @blog_tags.map(&:blog_post_id)], :per_page => 5, :order => 'published_at DESC')
+		else
+			@blog_posts = []
+		end
+
+    respond_to do |format|
+      format.html { render :action => 'index'}
+      format.xml  { render :xml => @blog_posts }
+    end		
+	end
 
   def drafts
     @blog_posts = BlogPost.drafts.paginate(:page => params[:page], :order => 'updated_at DESC')
