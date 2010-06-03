@@ -92,32 +92,20 @@ Optional:
     Install Oniguruma if 1.8.x
     http://www.geocities.jp/kosako3/oniguruma/
     
-    gem install ultraviolet
+    config.gem 'ultraviolet'
     
 - BlueCloth 2 (for markdown)
 
-    gem install bluecloth
+    config.gem 'bluecloth'
 
 - Paperclip
 
-    Rails 3:
-    gem "paperclip", :git => 'http://github.com/thoughtbot/paperclip.git', :branch => 'rails3'
-    
-    add to config/application.rb inside of class Application < Rails::Application
-	Paperclip::Railtie.insert
+    config.gem 'paperclip', :source => 'http://github.com/thoughtbot/paperclip.git'
 
 Rails 3
 =======
 
-Rails 3 is supported via branching, however, if you are using legacy routing, you may need to copy in routes
-from config/routes.rb to your main routes.rb file.  When rails 3 is launched, we will start a rails2 branch
-to maintain support for rails 2, and we will pull out the branching code.
-
-To be able to use the delete links on posts, you will need to add the following to the top of your layout:
-
-    <%= csrf_meta_tag %>
-
-Also be sure that you have the proper javascript handling code for link_to '', :method => destroy
+Rails 3 is supported, see rails3 branch
 
 Customization
 =============
