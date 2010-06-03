@@ -3,7 +3,13 @@ function addImage() {
 	var newImageDiv = document.getElementById('newImage');
 	var blogImagesDiv = document.getElementById('blogImages');
 	
-	blogImagesDiv.innerHTML += (newImageDiv.innerHTML+'').replace(/replace_with_rand/g, Math.round(Math.random() * 1000000000));
+	var add_html = (newImageDiv.innerHTML+'').replace(/replace_with_rand/g, Math.round(Math.random() * 1000000000));
+	
+	if (typeof(editor) !== 'undefined') {
+		blog_editor.setContent(blog_editor.getContent() + add_html);
+	} else {
+		blogImagesDiv.innerHTML += add_html;
+	}
 	
 }
 
@@ -22,7 +28,10 @@ function insertImage(image_id) {
 	<% if BlogKit.instance.settings['use_markdown'] == false && BlogKit.instance.settings['html_editor'] == true %>
 		<script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script>
 		<script type="text/javascript">
-		bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
+		bkLib.onDomLoaded(function() {
+			var blog_editors = nicEditors.allTextAreas();
+			var blog_editor = blog_editors[0];
+		});
 		</script>
 	<% end %>
 
