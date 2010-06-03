@@ -24,10 +24,12 @@
 	</div>
 
 	<hr class="blogPostBreak" />
-	<p class="blogPostTags">
-		<b>Tags: </b>
-		<%= blog_post.tags_with_links %>
-	</p>
+	<% unless blog_post.tags.blank? %>
+		<p class="blogPostTags">
+			<b>Tags: </b>
+			<%= blog_post.tags_with_links %>
+		</p>
+	<% end %>
 	
 	<p class="blogFooter">
 		<ul class="blogList">
