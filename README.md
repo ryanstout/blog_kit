@@ -138,9 +138,9 @@ Titles
 
 You can have blog_kit set the page title, just create a method in application_helper like:
 
-def title(ttl)
-    @page_title = ttl
-end
+    def title(ttl)
+        @page_title = ttl
+    end
 
 If anyone knows of a better convention for this, let me know.  This is what nifty_generators uses
 
