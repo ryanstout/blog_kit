@@ -5,8 +5,8 @@ class BlogPostsController < ApplicationController
 	
 	layout :choose_layout
 	
-	before_filter :require_user, :except => [:index, :show]
-	before_filter :require_admin, :except => [:index, :show]
+	before_filter :require_user, :except => [:index, :show, :tag]
+	before_filter :require_admin, :except => [:index, :show, :tag]
 
 	
   def index
