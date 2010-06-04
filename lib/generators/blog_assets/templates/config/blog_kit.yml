@@ -23,6 +23,7 @@ use_markdown: true
 # html_editor: true
 
 layout: 'application'
+admin_layout: 'application'
 
 theme: 'mac_classic'
 

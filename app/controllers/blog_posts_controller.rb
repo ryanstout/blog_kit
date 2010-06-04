@@ -3,7 +3,7 @@ class BlogPostsController < ApplicationController
 	
 	helper :blog
 	
-	layout(BlogKit.instance.settings['layout'] || 'application')
+	layout :choose_layout
 	
 	before_filter :require_user, :except => [:index, :show]
 	before_filter :require_admin, :except => [:index, :show]
@@ -126,5 +126,13 @@ class BlogPostsController < ApplicationController
 			end
 			
 			return true
+		end
+		
+		def choose_layout
+			if ['new', 'edit'].include?(params[:action])
+				BlogKit.instance.settings['admin_layout'] || 'application'
+			else
+				BlogKit.instance.settings['layout'] || 'application'
+			end
 		end
 end
