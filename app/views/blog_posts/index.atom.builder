@@ -5,7 +5,7 @@ atom_feed do |feed|
   @blog_posts.each do |post|
     feed.entry(post) do |entry|
       entry.title(post.title)
-      entry.content(post.body, :type => 'html')
+      entry.content(post.parsed_body, :type => 'html')
       entry.author { |author| author.name(post.user_name(true)) }
     end
   end
