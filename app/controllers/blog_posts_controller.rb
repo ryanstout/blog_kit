@@ -56,8 +56,10 @@ class BlogPostsController < ApplicationController
   end
 
   def new
-		puts "made it"
     @blog_post = BlogPost.new
+
+		@empty_blog_post = BlogPost.new
+		@empty_blog_post.blog_images.build
 
     respond_to do |format|
       format.html # new.html.erb
