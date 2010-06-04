@@ -66,12 +66,10 @@ class BlogPost < ActiveRecord::Base
 			
 			new_id = random_id
 			
-			puts "RAND: #{new_id}"
 			matching_image = self.blog_images.reject {|bi| !bi.random_id || bi.random_id != random_id }.first
 			
 			if matching_image
 				new_id = matching_image.id
-				puts "Replace: #{new_id}"
 			end
 			
 			"{blog_image:#{new_id}:#{size}}"
