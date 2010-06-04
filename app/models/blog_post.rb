@@ -47,7 +47,7 @@ class BlogPost < ActiveRecord::Base
 		
 			# Save new tags
 			@tags.split(/,/).each do |tag|
-				self.blog_tags.create(:tag => tag.strip)
+				self.blog_tags.build(:tag => tag.strip)
 			end
 		end
 	end
