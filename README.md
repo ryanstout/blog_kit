@@ -19,7 +19,9 @@ BlogKit has the following features.
 + Anonymous Comments (optional)
 + Atom Feeds
 + Tags
-+ Image upload
++ Image upload (via paperclip, or something that adds has_attached_file to models)
+    + S3 Image support
+
 
 Coming Soon:
 
