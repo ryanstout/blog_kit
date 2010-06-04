@@ -43,4 +43,10 @@ show_link_numbers: false
 paperclip:
   # path: ':rails_root/public/system/:attachment/:id/:style/:filename'
   
+  # # S3 support
+  # :storage: :s3
+  # :s3_credentials: "config/s3.yml"
+  # :path: ":attachment/:id/:style.:extension"
+  
+  
   # You can also override the image sizes for paperclip

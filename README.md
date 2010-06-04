@@ -126,8 +126,21 @@ application by including this in the controller:
 Then in the view:
 
     <%= blog_tags_list %>
+    
+You can optionally pass in a limit on the number of tags to show.
 
 Also keep in mind that you can specify a layout just for the blog kit pages.
+
+Titles
+======
+
+You can have blog_kit set the page title, just create a method in application_helper like:
+
+def title(ttl)
+    @page_title = ttl
+end
+
+If anyone knows of a better convention for this, let me know.  This is what nifty_generators uses
 
 Code Highlighting Example
 =========================
