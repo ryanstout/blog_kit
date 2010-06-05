@@ -153,32 +153,8 @@ To get code highlighted, place the following tag:
 
     </code>
 
-Available Code Highlighting Themes
-==================================
-
-Below is a list of the themes you can choose from for code highlighting
-
-    active4d
-    all_hallows_eve
-    amy
-    blackboard
-    brilliance_black
-    brilliance_dull
-    cobalt
-    dawn
-    eiffel
-    espresso_libre
-    idle
-    iplastic
-    lazy
-    mac_classic
-    magicwb_amiga
-    pastels_on_dark
-    slush_poppies
-    spacecadet
-    sunburst
-    twilight
-    zenburnesque
+You can find a list of languages (syntaxes) under doc/SYNTAXES and a list of themes (colors) under
+doc/THEMES
 
 
 Copyright (c) 2010 Ryan Stout, released under the MIT license
