@@ -11,13 +11,12 @@ begin
 	if (File.exists?(rails_root) && File.exists?(File.join(rails_root, 'app')))
 		require "#{rails_root}/config/boot"
 		require "#{rails_root}/config/environment"
-		require 'rails_generator'
-		require 'rails_generator/scripts/generate'
+		require 'rails/generators'
 	end
 
 	begin
 		# Run the generator
-		Rails::Generator::Scripts::Generate.new.run(['blog_assets'])
+		Rails::Generators.invoke('blog_assets')
 
 	rescue Exception => e
 		puts "The following error ocurred: " + e.inspect
