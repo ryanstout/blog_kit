@@ -99,7 +99,8 @@ Optional:
     Install Oniguruma if 1.8.x
     http://www.geocities.jp/kosako3/oniguruma/
     
-    gem 'ultraviolet'
+    source 'http://gems.github.com'
+    gem "spox-ultraviolet", :require => false
     
 - BlueCloth 2 (for markdown)
 
