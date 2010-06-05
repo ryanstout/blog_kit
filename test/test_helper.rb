@@ -62,7 +62,7 @@ def setup_user
 	@user.save(:validate => false)
 end
 
-def assert_includes(elem, array, message = nil)
+def assert_includes_with_regex(elem, array, message = nil)
 	message = build_message message, '<?> is not found in <?>.', elem, array
 	assert_block(message) do
 		elem.is_a?(String) ? array.include?(elem) : array.grep(elem).size > 0

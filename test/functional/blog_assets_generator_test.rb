@@ -17,9 +17,9 @@ class BlogAssetsGeneratorTest < Test::Unit::TestCase
   def test_generates_correct_file_name
     Rails::Generators.invoke("blog_assets", [], :destination_root => fake_rails_root)
     new_files = (file_list - @original_files)
-    assert_includes /create_blog_comments/, new_files
-    assert_includes /create_blog_posts/, new_files
-		assert_includes /blog_kit.yml/, new_files
+    assert_includes_with_regex /create_blog_comments/, new_files
+    assert_includes_with_regex /create_blog_posts/, new_files
+		assert_includes_with_regex /blog_kit.yml/, new_files
   end
 
   private
