@@ -129,7 +129,7 @@ class BlogPostsController < ApplicationController
 		end
 		
 		def choose_layout
-			if ['new', 'edit'].include?(params[:action])
+			if ['new', 'edit', 'create', 'update'].include?(params[:action])
 				BlogKit.instance.settings['admin_layout'] || 'application'
 			else
 				BlogKit.instance.settings['layout'] || 'application'
