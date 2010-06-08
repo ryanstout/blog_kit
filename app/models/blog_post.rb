@@ -92,9 +92,7 @@ class BlogPost < ActiveRecord::Base
 	
 	def user_name(skip_link=false)
 		if !skip_link && BlogKit.instance.settings['link_to_user']
-			link = "<a href=\"/users/#{self.user.id}\">#{self.user.name}</a>"
-			return link.html_safe if link.respond_to?(:html_safe)
-			return link
+			return "<a href=\"/users/#{self.user.id}\">#{CGI.escapeHTML(self.user.name)}</a>"
 		else
 			return self.user.name
 		end
