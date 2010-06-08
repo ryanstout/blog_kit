@@ -30,7 +30,7 @@ class BlogComment < ActiveRecord::Base
 	def user_name
 		name = self.user ? self.user.name : self.name
 		if !self.site_url.blank?
-			return "<a href=\"#{self.site_url}\">#{name}</a>"
+			return "<a href=\"#{self.site_url}\">".html_safe << name << "</a>".html_safe
 		else
 			return name
 		end
