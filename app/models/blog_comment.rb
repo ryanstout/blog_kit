@@ -45,7 +45,12 @@ class BlogComment < ActiveRecord::Base
 	
 	def check_for_spam
 		if BlogKit.instance.settings['akismet_key'] && BlogKit.instance.settings['blog_url']
-		  return !Akismetor.spam?(akismet_attributes)
+		  if Akismetor.spam?(akismet_attributes)
+				self.errors.add_to_base('This comment has been detected as spam')
+				return false
+			else
+				return true
+			end
 		end
 	  true
 	end
