@@ -34,10 +34,7 @@ class BlogPost < ActiveRecord::Base
 
 	def tags_with_links
 		html = self.tags.split(/,/).collect {|t| "<a href=\"/blog_posts/tag/#{t.strip}\">#{t.strip}</a>" }.join(', ')
-		# Rails 3
 		return html.html_safe if html.respond_to?(:html_safe)
-		# Rails 2.x
-		return html
 	end
 	
 	def save_tags
