@@ -7,6 +7,7 @@ class BlogPostsController < ApplicationController
 	
 	before_filter :require_user, :except => [:index, :show, :tag]
 	before_filter :require_admin, :except => [:index, :show, :tag]
+	before_filter :setup_image_template, :only => [:new, :edit, :create, :update]
 
 	
   def index
@@ -58,9 +59,6 @@ class BlogPostsController < ApplicationController
   def new
     @blog_post = BlogPost.new
 
-		@empty_blog_post = BlogPost.new
-		@empty_blog_post.blog_images.build
-
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @blog_post }
@@ -69,9 +67,6 @@ class BlogPostsController < ApplicationController
 
   def edit
     @blog_post = BlogPost.find(params[:id])
-
-		@empty_blog_post = BlogPost.new
-		@empty_blog_post.blog_images.build
   end
 
   def create
@@ -135,4 +130,9 @@ class BlogPostsController < ApplicationController
 				BlogKit.instance.settings['layout'] || 'application'
 			end
 		end
+		
+		def setup_image_template
+		  @empty_blog_post = BlogPost.new
+  		@empty_blog_post.blog_images.build
+	  end
 end
