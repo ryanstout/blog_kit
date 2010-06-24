@@ -12,7 +12,7 @@ class BlogPostsController < ApplicationController
 	
   def index
     @blog_posts = BlogPost.published.paginate(:page => params[:page], :per_page => 5, :order => 'published_at DESC')
-    @page_title = BlogKit.instance.settings['blog_name'] || 'Blog'
+    @index_title = BlogKit.instance.settings['blog_name'] || 'Blog'
 
     respond_to do |format|
       format.html # index.html.erb
@@ -31,7 +31,7 @@ class BlogPostsController < ApplicationController
 			@blog_posts = []
 		end
 
-    @page_title = 'Tag: ' + @tag
+    @index_title = 'Tag: ' + @tag
     respond_to do |format|
       format.html { render :action => 'index' }
       format.xml  { render :xml => @blog_posts }

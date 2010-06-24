@@ -1,4 +1,4 @@
-<% self.respond_to?(:title) && title(@page_title) -%>
+<% self.respond_to?(:title) && title(@index_title) -%>
 <% @show_title = false -%>
 <%= stylesheet_link_tag 'blog_kit' %>
 <%= stylesheet_link_tag 'syntax/' + (BlogKit.instance.settings['theme'] || 'mac_classic') %>
