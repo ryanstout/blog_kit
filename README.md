@@ -32,7 +32,7 @@ Install for Rails3
 
 in rails:
 
-    rails plugin install http://github.com/ryanstout/blog_kit.git -r rails3
+    rails plugin install git://github.com/ryanstout/blog_kit.git -r rails3
 
 The plugin will then copy in migrations for the BlogPost and BlogComment models.  Install the tables with:
 
