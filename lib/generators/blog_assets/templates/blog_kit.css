@@ -69,3 +69,7 @@ ul.blogList li.blogListFirst {
 .blogMarkdownHelp {
 	margin-top: 20px;
 }
+
+.blogKitCode pre {
+	overflow-x: auto;
+}
