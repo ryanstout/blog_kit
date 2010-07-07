@@ -15,7 +15,7 @@
 	<% end %>
 	<td>
 		[<%= link_to_function('delete', "removeImage(#{g.options[:child_index] || g.object.id})") %>]
-		<% if ((["2", "3", "7"] <=> Rails::VERSION::STRING.split('.')) > 0) %>
+		<% if ((["2", "3", "7"] <=> Rails::VERSION::STRING.split('.')) < 0) %>
 			<%= g.hidden_field :_destroy, :id => "image_#{g.options[:child_index] || g.object.id}" %>
 		<% else %>
 			<%= g.hidden_field :_delete, :id => "image_#{g.options[:child_index] || g.object.id}" %>
