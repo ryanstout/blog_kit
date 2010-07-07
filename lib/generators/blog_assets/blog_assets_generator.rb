@@ -6,8 +6,11 @@ class BlogAssetsGenerator < Rails::Generator::Base
   def manifest
     record do |m|
       m.migration_template 'blog_comments_migration.rb', "db/migrate", {:migration_file_name => "create_blog_comments"}
+      sleep 1 # not ideal, but makes sure the timestamp's differ
       m.migration_template 'blog_posts_migration.rb', "db/migrate", {:migration_file_name => "create_blog_posts"}
+      sleep 1 # not ideal, but makes sure the timestamp's differ
       m.migration_template 'blog_tags_migration.rb', "db/migrate", {:migration_file_name => "create_blog_tags"}
+      sleep 1 # not ideal, but makes sure the timestamp's differ
       m.migration_template 'blog_images_migration.rb', "db/migrate", {:migration_file_name => "create_blog_images"}
 			m.file "config/blog_kit.yml", "config/blog_kit.yml"
 			m.file "blog_kit.css", "public/stylesheets/blog_kit.css"
