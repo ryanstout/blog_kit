@@ -16,7 +16,7 @@ class BlogAssetsGenerator < Rails::Generators::Base
 	def self.source_root
 		@source_root ||= File.join(File.dirname(__FILE__), 'templates')
 	end
-	
+
 	def create_assets
 		migration_template 'blog_comments_migration.rb', "db/migrate/create_blog_comments.rb"
 		migration_template 'blog_posts_migration.rb', "db/migrate/create_blog_posts.rb"
@@ -50,3 +50,4 @@ class BlogAssetsGenerator < Rails::Generators::Base
 		copy_file "syntax/zenburnesque.css", "public/stylesheets/syntax/zenburnesque.css"
 	end
 end
+
