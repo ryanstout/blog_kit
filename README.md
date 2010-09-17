@@ -122,6 +122,26 @@ the models, views, and controllers in vendor/plugins/blog_kit/app/  You can chan
 them into your apps /app directory.  Rails will look in /app before looking in vendor/plugins/blog_kit/app/
 Once they are copied into /app, you can customize the appearance/behavior of the blog pages.
 
+Troubleshooting
+===============
+
+Q. Creating a blog post does not work, it instead renders the index page.
+A. Make sure you aren't using the old style default routes in rails (match '/:controller(/:action(/:id))')
+   If you are using default routes, then simply copy the following into your routes.rb file before the default route
+
+  	resources :blog_posts do
+		resources :blog_comments
+		resources :blog_images
+		
+		collection do
+			get :drafts
+		end
+		
+		member do
+			get :tag
+		end
+	end
+
 Tag List
 ========
 
