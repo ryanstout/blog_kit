@@ -15,6 +15,8 @@ class BlogPost < ActiveRecord::Base
 	
 	validates_presence_of :title
 	validates_presence_of :body
+
+  default_scope :order => 'published_at DESC'
 	
 	scope :published, { :conditions => {:published => true }}
 	scope :drafts, { :conditions => {:published => false }}
