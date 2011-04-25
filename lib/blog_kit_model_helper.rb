@@ -36,7 +36,11 @@ module BlogKitModelHelper
 				end
       else
 				if defined?(BlueCloth)
-	        BlueCloth.new(piece, markdown_options).to_html
+					begin
+		        BlueCloth.new(piece, markdown_options).to_html
+					rescue Exception => e
+						'[Parsing Error]'
+					end
 				else
 					ERB::Util.html_escape(piece)
 				end
